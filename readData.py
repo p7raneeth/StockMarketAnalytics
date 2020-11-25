@@ -25,9 +25,6 @@ def get_data(ticker_list, from_date, to_date):
     return(data)
 
 
-
-
-
 if __name__ == '__main__':
 
     st.write('Hello welcome to the Stock Market Analytics Web App!!')
