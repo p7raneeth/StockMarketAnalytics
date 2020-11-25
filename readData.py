@@ -26,18 +26,13 @@ def get_data(ticker_list, from_date, to_date):
 
 
 if __name__ == '__main__':
-
     st.write('Hello welcome to the Stock Market Analytics Web App!!')
-    # data = get_data(['AAPL'])
-    # st.write(data)
-    # change this code to select multiple stocks
     today = datetime.date.today()
     def_start_date = time.strftime('%Y-%m-1')
     def_start_date = datetime.datetime.strptime(def_start_date, '%Y-%m-%d')
     option = st.selectbox('Please choose the stock tickers you are interested to Analyze', ['SPY', 'AAPL', 'AMZN'])
     from_date = st.date_input('from date', (def_start_date))
     to_date = st.date_input('to date', )
-    # st.write(f'you have selected {}')
     st.write('You have selected:', option)
     data = get_data(''.join(option), from_date, to_date)
     st.write(data)
