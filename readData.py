@@ -7,8 +7,9 @@ import pandas as pd
 import sys
 import datetime
 import time
+import matplotlib.pyplot as plt
 
-def get_data(ticker_list, from_date, to_date, col_option):
+def get_data(ticker_list, from_date, to_date):
     """    
     function to get data as per the ticker selected within the specified time ran
     """
@@ -21,13 +22,18 @@ def get_data(ticker_list, from_date, to_date, col_option):
                         threads = True,)
 
         data = data[from_date:to_date]
-        print('column selection', col_option)
-        data = data.loc[:, col_option]
+
         
         print(data)
     except:
         print(sys.exc_info()[0])
     return(data)
+
+def plot_data(data):
+    pass
+    # plt.plot(data[''])
+
+
 
 
 if __name__ == '__main__':
@@ -39,16 +45,22 @@ if __name__ == '__main__':
     from_date = st.date_input('from date', (def_start_date))
     to_date = st.date_input('to date', )
     st.write('You have selected:', option)
+    data = get_data(''.join(option), from_date, to_date)
+    st.write(data)
+    
+
+    # col_option = st.multiselect('Select the column to perform Uni-Variate Analysis', ['Open','High', 'Low', 'Close', 'Volume'])
     col_option = st.selectbox('Select the column to perform Uni-Variate Analysis', ['Open','High', 'Low', 'Close', 'Volume'])
     st.write('column:', col_option)
-    data = get_data(''.join(option), from_date, to_date, col_option)
+    print('column selection', col_option)
+    data = data.loc[:, col_option]
     st.write(data)
+    st.line_chart(data)
 
+    
     st.write('Univariate Analysis')
     st.write('Mean', data.values.mean())
     st.write('Median', statistics.median(data.values))
     st.write('Mode', statistics.mode(data.values))
     st.write(f'Min: {min(data.values)} - Max: {max(data.values)}')
-    # # st.write(data.values.quantile([0.25]))
-    # print('quartiles')
-    # print(data.values.quantile([0.25]))
+
