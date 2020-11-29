@@ -29,9 +29,6 @@ def get_data(ticker_list, from_date, to_date):
         print(sys.exc_info()[0])
     return(data)
 
-def plot_data(data):
-    pass
-    # plt.plot(data[''])
 
 
 
